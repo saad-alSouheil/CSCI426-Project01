@@ -1,17 +1,18 @@
-import React from 'react'; 
-import { Link } from 'react-router-dom'; 
-import '../style/Navbar.css'; 
+import React from "react";
+import { Link } from "react-router-dom";
+import "../style/Navbar.css";
 
-function Navbar() { 
-    return ( 
-        <nav className="navbar"> 
-            <h2>My App</h2> 
-            <div className="links"> 
-                <Link to="/">Home</Link> 
-                <Link to="/about">About</Link>  
-            </div> 
-        </nav> 
-    ); 
+function Navbar({ currentUser }) {
+  return (
+    <aside className="side-navbar">
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/discussions">Discussions</Link></li>
+        <li>{currentUser && <Link to="/profile">Profile</Link>}</li>
+        <li><Link to="/about">About</Link></li>
+      </ul>
+    </aside>
+  );
 }
- 
-export default Navbar; 
+
+export default Navbar;

@@ -1,17 +1,49 @@
-.navbar { 
-background-color: #333; 
-color: white; 
-padding: 10px 20px; 
-display: flex; 
-justify-content: space-between; 
-align-items: center; 
-} 
-.links a { 
-color: white; 
-margin-left: 15px; 
-text-decoration: none; 
-padding: 10px;
-} 
-.links a:hover { 
-text-decoration: underline; 
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 10px 20px;
+}
+
+.top-navbar .links a,
+.top-navbar .links button {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.top-navbar .links button:hover,
+.top-navbar .links a:hover {
+  text-decoration: underline;
+}
+
+/* Side Navbar */
+.side-navbar {
+  width: 200px;
+  background-color: #f4f4f4;
+  height: 100vh;
+  padding: 20px;
+}
+
+.side-navbar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-navbar ul li {
+  margin-bottom: 15px;
+}
+
+.side-navbar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.side-navbar ul li a:hover {
+  font-weight: bold;
 }
