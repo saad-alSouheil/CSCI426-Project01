@@ -79,7 +79,7 @@ The app will open automatically at:\
 
 ### 📝 Patient Dashboard
 
-![PatientDashboard Page](./src/assets/PatientDashboard.jpg.jpg)
+![PatientDashboard Page](./src/assets/PatientDashboard.jpg)
 
 ### 📝 Explore Page
 
