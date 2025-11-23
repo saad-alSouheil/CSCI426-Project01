@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 const AddDiscussion = ({currentUser, addDiscussion }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [type, setType] = useState("study");
+
 
   const navigate = useNavigate();
 
@@ -15,23 +17,30 @@ const AddDiscussion = ({currentUser, addDiscussion }) => {
   }
 }, [currentUser, navigate]);
 
+if (!currentUser) return null; 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Automatically set type for patients
+    const discussionType =
+      currentUser.role === "doctor" ? type : "question";
+
+
     const newDiscussion = {
       id: Date.now(), // unique ID
       title,
+      type: discussionType,
       content,
       author: currentUser.name,
       role: currentUser.role,
       date: new Date().toISOString().split("T")[0],
+      comments: [],  
+      likes: 0  
     };
 
     addDiscussion(newDiscussion);
-
-    // Go back to discussions page
-    navigate("/discussions");
+      navigate("/discussions");
   };
 
   return (
@@ -55,6 +64,20 @@ const AddDiscussion = ({currentUser, addDiscussion }) => {
           onChange={(e) => setContent(e.target.value)}
           style={{ width: "100%", height: "150px", padding: "8px" }}
         />
+
+   {currentUser.role === "doctor" && (
+          <>
+            <label>Type</label>
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              style={{ width: "100%", padding: "8px", marginBottom: "15px" }}
+            >
+              <option value="study">Study</option>
+              <option value="topic">Topic</option>
+            </select>
+          </>
+        )}
 
         <button
           type="submit"

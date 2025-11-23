@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PostCards from "../components/PostCards";
 
-const DiscussionsPage = ({discussions}) => {
+const DiscussionsPage = ({discussions, currentUser}) => {
   const [search, setSearch] = useState("");
 
   // Filter based on search term
@@ -30,36 +31,14 @@ const DiscussionsPage = ({discussions}) => {
         </Link>
       
 
-      {/* If no discussions */}
-      {filteredDiscussions.length === 0 && <p>No discussions found.</p>}
-
-      {/* List discussions */}
       <div style={{ marginTop: "20px" }}>
-        {filteredDiscussions.map((disc) => (
-          <div
-            key={disc.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "15px",
-              borderRadius: "5px",
-              marginBottom: "15px",
-            }}
-          >
-            <h3>{disc.title}</h3>
-
-            <p>
-              <strong>By:</strong> {disc.author} ({disc.role})
-            </p>
-            <p>
-              <strong>Date:</strong> {disc.date}
-            </p>
-
-            <p>{disc.content.slice(0, 100)}...</p>
-
-            <Link to={`/discussion/${disc.id}`}>
-              <button style={{ marginTop: "10px" }}>View</button>
-            </Link>
-          </div>
+        {filteredDiscussions.length === 0 && <p>No discussions found.</p>}
+        {filteredDiscussions.map((d) => (
+          <PostCards
+            key={d.id}
+            discussion={d}
+            currentUser={currentUser}
+          />
         ))}
       </div>
     </div>

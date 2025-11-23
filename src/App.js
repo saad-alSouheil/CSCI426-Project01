@@ -9,6 +9,7 @@ import ViewDiscussion from "./pages/ViewDiscussion";
 import AddDiscussion from "./pages/addDiscussion";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import { preloadedUsers } from "./data/Users";
 import { discussionsData } from "./data/discussionsData";
@@ -65,6 +66,7 @@ const handleAddComment = (discussionId, text) => {
         element={<Register users={users} setCurrentUser={setCurrentUser} setUsers={setUsers}/>}
       />
       <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard  currentUser={currentUser} posts={allDiscussions}/>} />
       
       <Route
   path="/discussion/:id"

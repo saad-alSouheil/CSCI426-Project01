@@ -6,6 +6,7 @@ export const discussionsData = [
     author: "Dr. Sarah Haddad",
     role: "doctor",
     date: "2025-01-10",
+    type: "study",
     likes: 3,
     comments: []
   },
@@ -16,6 +17,7 @@ export const discussionsData = [
     author: "Ahmad Khoury",
     role: "patient",
     date: "2025-02-02",
+    type: "question",
     likes: 1,
     comments: []
   },
@@ -26,6 +28,7 @@ export const discussionsData = [
     author: "Maya Nassar",
     role: "patient",
     date: "2025-03-05",
+    type: "question",
     likes: 0,
     comments: []
   },

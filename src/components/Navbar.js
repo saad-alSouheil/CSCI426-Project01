@@ -6,7 +6,16 @@ function Navbar({ currentUser }) {
   return (
     <aside className="side-navbar">
       <ul>
-        <li><Link to="/">Home</Link></li>
+        <li>
+          {currentUser ? (
+              <>
+                <Link to="/dashboard">Dashboard</Link>
+              </>
+              ):(
+              <><Link to="/">Home</Link></>
+                )
+            }
+        </li>
         <li><Link to="/discussions">Discussions</Link></li>
         <li>{currentUser && <Link to="/profile">Profile</Link>}</li>
         <li><Link to="/about">About</Link></li>

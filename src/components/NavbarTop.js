@@ -1,9 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Navbar.css";
 
 export default function Navbar({ currentUser, setCurrentUser }) {
-  const handleLogout = () => setCurrentUser(null);
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    setCurrentUser(null);
+    navigate("/");
+  }
   
   return (
     <nav className="top-navbar">

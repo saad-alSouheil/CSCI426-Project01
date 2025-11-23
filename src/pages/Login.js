@@ -10,7 +10,7 @@ export default function Login({ users, setCurrentUser}) {
     const found = users.find((u) => u.username === selectedUser);
     if (found) {
       setCurrentUser(found);
-      navigate("/discussions");
+      navigate("/dashboard");
     } else {
       alert("Please select a user.");
     }
