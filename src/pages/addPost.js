@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddDiscussion = ({currentUser, addDiscussion }) => {
+const AddPost = ({currentUser, addPost }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [type, setType] = useState("study");
@@ -23,14 +23,14 @@ if (!currentUser) return null;
     e.preventDefault();
 
     // Automatically set type for patients
-    const discussionType =
-      currentUser.role === "doctor" ? type : "question";
+    const postType =
+      currentUser.role === "doctor" ? type : "discussion";
 
 
-    const newDiscussion = {
+    const newPost = {
       id: Date.now(), // unique ID
       title,
-      type: discussionType,
+      type: postType,
       content,
       author: currentUser.name,
       role: currentUser.role,
@@ -39,13 +39,13 @@ if (!currentUser) return null;
       likes: 0  
     };
 
-    addDiscussion(newDiscussion);
-      navigate("/discussions");
+    addPost(newPost);
+      navigate("/posts");
   };
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Create a New Discussion</h2>
+      <h2>Create a New Post</h2>
 
       <form onSubmit={handleSubmit} style={{ maxWidth: "500px" }}>
         <label>Title</label>
@@ -83,11 +83,11 @@ if (!currentUser) return null;
           type="submit"
           style={{ marginTop: "20px", padding: "10px 20px" }}
         >
-          Post Discussion
+          Post Post
         </button>
       </form>
     </div>
   );
 };
 
-export default AddDiscussion;
+export default AddPost;

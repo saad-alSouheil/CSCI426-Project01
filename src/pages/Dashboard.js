@@ -16,7 +16,7 @@ useEffect(() => {
 
   const recentQuest = [...posts]
     .reverse()
-    .filter((p) => p.type === "question")
+    .filter((p) => p.type === "discussion")
     .slice(0, 2);
 
   const recentPosts = [...posts]
@@ -47,15 +47,15 @@ if (currentUser.role === "doctor") {
       {/* Doctor-only section */}
       {isDoctor && (
         <>
-          <h3>Recent Questions</h3>
+          <h3>Recent Discussions</h3>
           {recentQuest.length === 0 ? (
-            <p>No questions yet.</p>
+            <p>No discussions yet.</p>
           ) : (
             <div style={{ marginTop: "20px" }}>
               {recentQuest.map((q) => (
                 <PostCards
                   key={q.id}
-                  discussion={q}
+                  post={q}
                   currentUser={currentUser}
                 />
               ))}
@@ -75,7 +75,7 @@ if (currentUser.role === "doctor") {
           {recentPosts.map((p) => (
             <PostCards
               key={p.id}
-              discussion={p}
+              post={p}
               currentUser={currentUser}
             />
           ))}

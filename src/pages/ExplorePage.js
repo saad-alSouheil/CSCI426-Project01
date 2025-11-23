@@ -1,42 +1,41 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 import PostCards from "../components/PostCards";
 
-const DiscussionsPage = ({discussions, currentUser}) => {
+const PostsPage = ({posts, currentUser}) => {
   const [search, setSearch] = useState("");
 
   // Filter based on search term
-  const filteredDiscussions = discussions.filter((d) =>
+  const filteredPosts = posts.filter((d) =>
     d.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>All Discussions</h2>
+      <h2>All Posts</h2>
 
-      {/* Search */}
-      <input
-        type="text"
-        placeholder="Search discussions..."
+       {/* Search */}
+      <SearchBar
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "8px", width: "250px", marginBottom: "20px" }}
+        placeholder="Search posts..."
       />
 
       
-        <Link to="/create-discussion">
+        <Link to="/create-post">
           <button style={{ marginLeft: "20px", padding: "8px 15px" }}>
-            + New Discussion
+            + New Post
           </button>
         </Link>
       
 
       <div style={{ marginTop: "20px" }}>
-        {filteredDiscussions.length === 0 && <p>No discussions found.</p>}
-        {filteredDiscussions.map((d) => (
+        {filteredPosts.length === 0 && <p>No posts found.</p>}
+        {filteredPosts.map((d) => (
           <PostCards
             key={d.id}
-            discussion={d}
+            post={d}
             currentUser={currentUser}
           />
         ))}
@@ -45,4 +44,4 @@ const DiscussionsPage = ({discussions, currentUser}) => {
   );
 };
 
-export default DiscussionsPage;
+export default PostsPage;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CommentsSection = ({ discussion, currentUser, onAddComment }) => {
+const CommentsSection = ({ post, currentUser, onAddComment }) => {
   const [commentInput, setCommentInput] = useState("");
   const navigate =useNavigate();
   const handleAddComment = () => {
@@ -13,15 +13,15 @@ const CommentsSection = ({ discussion, currentUser, onAddComment }) => {
       return;
     }
 
-    onAddComment(discussion.id, commentInput.trim());
+    onAddComment(post.id, commentInput.trim());
     setCommentInput("");
   };
 
   return (
     <div style={{ marginTop: "10px" }}>
-      <p>({discussion.comments.length}) Comments</p>
+      <p>({post.comments.length}) Comments</p>
 
-      {discussion.comments.map((c, i) => (
+      {post.comments.map((c, i) => (
   <div key={i} style={{ borderBottom: "1px solid #eee", paddingBottom: "5px", marginBottom: "5px" }}>
     <p style={{ margin: 0 }}>
       <strong>{c.username} ({c.role})</strong>

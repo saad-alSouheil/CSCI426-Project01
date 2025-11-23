@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PostCards = ({ discussion, currentUser}) => {
+const PostCards = ({ post, currentUser}) => {
   return (
     <div
       style={{
@@ -11,18 +11,18 @@ const PostCards = ({ discussion, currentUser}) => {
         marginBottom: "15px",
       }}
     >
-      <h3>{discussion.title}</h3>
+      <h3>{post?.title}</h3>
       <p>
-        <strong>By:</strong> {discussion.author} ({discussion.role})
+        <strong>By:</strong> {post.author} ({post.role})
       </p>
-      <p>{discussion.type}</p>
+      <p>{post.type}</p>
       <p>
-        <strong>Date:</strong> {discussion.date}
+        <strong>Date:</strong> {post.date}
       </p>
-      <p>{discussion.content.slice(0, 200)}...</p>
+      <p>{post.content.slice(0, 200)}...</p>
 
       
-        <Link to={`/discussion/${discussion.id}`}>
+        <Link to={`/post/${post.id}`}>
           <button style={{ marginLeft: "10px" }}>View</button>
         </Link>
       </div>

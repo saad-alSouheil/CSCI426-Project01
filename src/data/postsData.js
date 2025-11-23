@@ -1,4 +1,4 @@
-export const discussionsData = [
+export const postsData = [
   {
     id: 1,
     title: "New Guidelines for Diabetes Patients",
@@ -17,7 +17,7 @@ export const discussionsData = [
     author: "Ahmad Khoury",
     role: "patient",
     date: "2025-02-02",
-    type: "question",
+    type: "discussion",
     likes: 1,
     comments: []
   },
@@ -28,7 +28,7 @@ export const discussionsData = [
     author: "Maya Nassar",
     role: "patient",
     date: "2025-03-05",
-    type: "question",
+    type: "discussion",
     likes: 0,
     comments: []
   },

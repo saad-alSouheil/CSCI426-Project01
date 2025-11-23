@@ -4,35 +4,36 @@ import Navbar from "./components/Navbar";
 import TopNavbar from "./components/NavbarTop";
 import Login from "./pages/Login";
 import Register from "./components/Register";
-import Discussions from "./pages/Discussions";
-import ViewDiscussion from "./pages/ViewDiscussion";
-import AddDiscussion from "./pages/addDiscussion";
+import ExplorePage from "./pages/ExplorePage";
+import DiscussionsPage from "./pages/DiscussionsPage";
+import ViewPost from "./pages/ViewPost";
+import AddPost from "./pages/addPost";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import { preloadedUsers } from "./data/Users";
-import { discussionsData } from "./data/discussionsData";
+import { postsData } from "./data/postsData";
 import "./App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [users, setUsers] = useState(preloadedUsers);
-  const [allDiscussions, setAllDiscussions] = useState(discussionsData);
+  const [allPosts, setAllPosts] = useState(postsData);
 
-  const addDiscussion = (discussion) => {
-    setAllDiscussions((prev) => [...prev, discussion]);
+  const addPost = (post) => {
+    setAllPosts((prev) => [...prev, post]);
   };
   const handleLike = (id, delta) => {
-  setAllDiscussions(prev =>
+  setAllPosts(prev =>
     prev.map(d => (d.id === id ? { ...d, likes: d.likes + delta } : d))
   );
 };
 
-const handleAddComment = (discussionId, text) => {
-  setAllDiscussions(prev =>
+const handleAddComment = (postId, text) => {
+  setAllPosts(prev =>
     prev.map(d =>
-      d.id === discussionId
+      d.id === postId
         ? {
             ...d,
             comments: [
@@ -48,9 +49,9 @@ const handleAddComment = (discussionId, text) => {
 
   return (
     <Router>
-      <TopNavbar currentUser={currentUser} setCurrentUser={setCurrentUser} discussions={allDiscussions}/>
+      <TopNavbar currentUser={currentUser} setCurrentUser={setCurrentUser} posts={allPosts}/>
       <div className="app-layout">
-        <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} discussions={allDiscussions} />
+        <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} posts={allPosts} />
       <main className="main-content">
       <Routes>
         <Route
@@ -66,13 +67,20 @@ const handleAddComment = (discussionId, text) => {
         element={<Register users={users} setCurrentUser={setCurrentUser} setUsers={setUsers}/>}
       />
       <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard  currentUser={currentUser} posts={allDiscussions}/>} />
+      <Route path="/dashboard" element={<Dashboard  currentUser={currentUser} posts={allPosts}/>} />
       
+      {currentUser?.role === "doctor" && (
       <Route
-  path="/discussion/:id"
+      path="/discussions"
+      element={<DiscussionsPage posts={allPosts} currentUser={currentUser} />}
+    />
+    )}
+
+      <Route
+  path="/post/:id"
   element={
-    <ViewDiscussion
-      discussions={allDiscussions}
+    <ViewPost
+      posts={allPosts}
       currentUser={currentUser}
       handleLike={handleLike}
       handleAddComment={handleAddComment}
@@ -81,22 +89,22 @@ const handleAddComment = (discussionId, text) => {
 />
 
 <Route
-  path="/discussions"
+  path="/posts"
   element={
-    <Discussions
+    <ExplorePage
       currentUser={currentUser}
-      discussions={allDiscussions}
-      setAllDiscussions={setAllDiscussions}
+      posts={allPosts}
+      setAllPosts={setAllPosts}
     />
   }
 />
 
       <Route
-          path="/create-discussion"
+          path="/create-post"
           element={
-            <AddDiscussion
+            <AddPost
               currentUser={currentUser}
-              addDiscussion={addDiscussion}
+              addPost={addPost}
             />
           }
         />
