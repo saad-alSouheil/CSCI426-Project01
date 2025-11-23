@@ -13,7 +13,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
   
   return (
     <nav className="top-navbar">
-        <div className="logo">MyApp</div>
+        <div className="logo">MediConnect</div>
         <div className="links">
             {currentUser ? (
                 <>

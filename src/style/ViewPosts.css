@@ -1,0 +1,132 @@
+/* ViewPost.css - Jade & White Theme */
+.view-post-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 168, 107, 0.08);
+  border: 1px solid #e0f0ea;
+}
+
+.post-not-found {
+  text-align: center;
+  padding: 60px 20px;
+  color: #5d6d7e;
+  font-size: 1.1rem;
+}
+
+.post-header {
+  border-bottom: 2px solid #e0f0ea;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.post-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.post-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #5d6d7e;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #00a86b;
+}
+
+.author-badge {
+  background: linear-gradient(135deg, #00a86b, #007a52);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.type-badge {
+  background: rgba(0, 168, 107, 0.1);
+  color: #007a52;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 168, 107, 0.2);
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  white-space: pre-line;
+}
+
+.post-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0f0ea;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .view-post-container {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .post-title {
+    font-size: 1.8rem;
+  }
+  
+  .post-meta {
+    gap: 15px;
+  }
+  
+  .post-content {
+    font-size: 1rem;
+  }
+  
+  .post-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-post-container {
+    padding: 15px;
+  }
+  
+  .post-title {
+    font-size: 1.5rem;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .meta-item {
+    font-size: 0.9rem;
+  }
+}

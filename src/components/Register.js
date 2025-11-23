@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "../style/Register.css";
 export default function Register({ users, setUsers }) {
   const [newUsername, setNewUsername] = useState("");
-  const [newRole, setNewRole] = useState("patient");
+  const [newRole, setNewRole] = useState("Patient");
   const [password, setPassword] = useState("");
   const [gender, setGender] = useState("male");
   const navigate = useNavigate();
 
- const handleRegister = () => {
+  const handleRegister = () => {
     if (!newUsername.trim()) {
       alert("Username is required.");
       return;
@@ -37,55 +37,76 @@ export default function Register({ users, setUsers }) {
     setPassword("");
   };
 
-    return (
-    <div style={{ padding: "20px", maxWidth: "400px" }}>
-      <h2>Create Account</h2>
+  return (
+    <div className="register-container">
+      <div className="register-card">
+        <h2 className="register-title">Create Account</h2>
 
-      <label>Username</label>
-      <input
-        type="text"
-        placeholder="Choose a username"
-        value={newUsername}
-        onChange={(e) => setNewUsername(e.target.value)}
-        style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-      />
+        <div className="form-group">
+          <label className="form-label">Username</label>
+          <input
+            type="text"
+            placeholder="Choose a username"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+            className="form-input"
+          />
+        </div>
 
-      <label>Password</label>
-      <input
-        type="password"
-        placeholder="Choose a password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-      />
+        <div className="form-group">
+          <label className="form-label">Password</label>
+          <input
+            type="password"
+            placeholder="Choose a password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-input"
+          />
+        </div>
 
-      <label>Gender</label>
-      <select
-        value={gender}
-        onChange={(e) => setGender(e.target.value)}
-        style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-      >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
+        <div className="form-group">
+          <label className="form-label">Gender</label>
+          <div className="radio-group">
+            <label className="radio-option">
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={gender === "male"}
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Male
+            </label>
+            <label className="radio-option">
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={gender === "female"}
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Female
+            </label>
+          </div>
+        </div>
 
-      <label>Role</label>
-      <select
-        value={newRole}
-        onChange={(e) => setNewRole(e.target.value)}
-        style={{ width: "100%", padding: "8px", marginBottom: "20px" }}
-      >
-        <option value="doctor">Doctor</option>
-        <option value="patient">Patient</option>
-      </select>
+        <div className="form-group">
+          <label className="form-label">Role</label>
+          <select
+            value={newRole}
+            onChange={(e) => setNewRole(e.target.value)}
+            className="form-select"
+          >
+            <option value="Doctor">Doctor</option>
+            <option value="Patient">Patient</option>
+          </select>
+        </div>
 
-      <button
-        onClick={handleRegister}
-        style={{ padding: "10px 20px", width: "100%" }}
-      >
-        Create Account
-      </button>
+        <button onClick={handleRegister} className="register-button">
+          Create Account
+        </button>
+
+      </div>
     </div>
   );
 }

@@ -1,18 +1,18 @@
 export const preloadedUsers = [
-  { 
+   { 
     id: 1, 
-    username: "doctor1", 
-    name: "doctor1",
-    role: "doctor", 
-    bio: "I am a doctor.", 
-    gender: "female" 
+    username: "Sami", 
+    name: "Sami Yousef",
+    role: "Doctor", 
+    bio: "General practitioner with 10+ years of clinical experience. Passionate about preventative care and patient education.", 
+    gender: "male" 
   },
   { 
     id: 2, 
-    username: "patient1", 
+    username: "AhmadK", 
     name: "Ahmad Khoury",
-    role: "patient", 
-    bio: "I am a patient.", 
+    role: "Patient", 
+    bio: "Living with asthma since childhood. Here to learn and share experiences with others.", 
     gender: "male"
   },
 ];

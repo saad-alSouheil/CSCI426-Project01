@@ -1,32 +1,35 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import PostCards from "../components/PostCards";
+import "../style/ExplorePage.css";  
 
-const PostsPage = ({posts, currentUser}) => {
+const ExplorePage = ({ posts, currentUser }) => {
   const [search, setSearch] = useState("");
 
-  // Filter based on search term
-  const filteredPosts = posts.filter((d) =>
-    d.title.toLowerCase().includes(search.toLowerCase())
+  // Filter based on search term only
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>All Posts</h2>
-
-       {/* Search */}
-      <SearchBar
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search posts..."
-      />
+    <div className="explore-container">
+      <div className="header-search-row">
+      <h2 className="page-header">Explore</h2>
+      <div className="search-section">
+        <SearchBar
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search posts by title..."
+        />
+      </div>
+      </div>
       
-      <div style={{ marginTop: "20px" }}>
-        {filteredPosts.length === 0 && <p>No posts found.</p>}
-        {filteredPosts.map((d) => (
+      <div>
+        {filteredPosts.length === 0 && <p className="no-posts">No posts found.</p>}
+        {filteredPosts.map((post) => (
           <PostCards
-            key={d.id}
-            post={d}
+            key={post.id}
+            post={post}
             currentUser={currentUser}
           />
         ))}
@@ -35,4 +38,4 @@ const PostsPage = ({posts, currentUser}) => {
   );
 };
 
-export default PostsPage;
+export default ExplorePage;

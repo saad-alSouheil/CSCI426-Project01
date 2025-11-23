@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
+import Footer from "./components/Footer";
 import { preloadedUsers } from "./data/Users";
 import { postsData } from "./data/postsData";
 import "./App.css";
@@ -69,9 +70,9 @@ const handleAddComment = (postId, text) => {
       <Route path="/" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard  currentUser={currentUser} posts={allPosts}/>} />
       
-      {currentUser?.role === "doctor" && (
+      {currentUser?.role === "Doctor" && (
       <Route
-      path="/discussions"
+      path="/Discussions"
       element={<DiscussionsPage posts={allPosts} currentUser={currentUser} />}
     />
     )}
@@ -126,6 +127,9 @@ const handleAddComment = (postId, text) => {
         )
       }
       </Routes>
+      <div className='footer'>
+            <Footer/>
+        </div>
       </main>
       </div>
     </Router>

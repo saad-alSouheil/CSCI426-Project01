@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../style/Like&Cmt.css";
 
 const LikeButton = ({ post, onLike }) => {
   const [liked, setLiked] = useState(false);
@@ -9,8 +10,12 @@ const LikeButton = ({ post, onLike }) => {
   };
 
   return (
-    <button onClick={handleClick}>
-      {liked ? "Unlike" : "Like"} ({post.likes})
+    <button 
+      onClick={handleClick} 
+      className={`like-button ${liked ? 'liked' : ''}`}
+    >
+      {liked ? "❤️ Unlike" : "🤍 Like"} 
+      <span className="like-count">({post.likes})</span>
     </button>
   );
 };

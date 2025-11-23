@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../style/Like&Cmt.css";
 
 const CommentsSection = ({ post, currentUser, onAddComment }) => {
   const [commentInput, setCommentInput] = useState("");
-  const navigate =useNavigate();
+  const navigate = useNavigate();
+
   const handleAddComment = () => {
     if (!commentInput.trim()) return;
 
@@ -18,27 +20,38 @@ const CommentsSection = ({ post, currentUser, onAddComment }) => {
   };
 
   return (
-    <div style={{ marginTop: "10px" }}>
-      <p>({post.comments.length}) Comments</p>
+    <div className="comments-section">
+      <h4 className="comments-title">
+        Comments ({post.comments ? post.comments.length : 0})
+      </h4>
 
-      {post.comments.map((c, i) => (
-  <div key={i} style={{ borderBottom: "1px solid #eee", paddingBottom: "5px", marginBottom: "5px" }}>
-    <p style={{ margin: 0 }}>
-      <strong>{c.username} ({c.role})</strong>
-    </p>
-    <p style={{ margin: 0 }}>{c.text}</p>
-  </div>
-))}
+      {post.comments && post.comments.length > 0 ? (
+        post.comments.map((comment, index) => (
+          <div key={index} className="comment-item">
+            <p className="comment-author">
+              {comment.author} 
+              <span className="comment-role">({comment.role})</span>
+            </p>
+            <p className="comment-text">{comment.text}</p>
+          </div>
+        ))
+      ) : (
+        <p className="no-comments">No comments yet. Be the first to comment!</p>
+      )}
 
-      <div style={{ marginTop: "10px" }}>
+      <div className="comment-input-container">
         <input
           type="text"
           placeholder="Add a comment..."
           value={commentInput}
           onChange={(e) => setCommentInput(e.target.value)}
-          style={{ width: "80%", padding: "5px" }}
+          className="comment-input"
         />
-        <button onClick={handleAddComment} style={{ marginLeft: "5px" }}>
+        <button 
+          onClick={handleAddComment} 
+          className="comment-submit"
+          disabled={!commentInput.trim()}
+        >
           Post
         </button>
       </div>

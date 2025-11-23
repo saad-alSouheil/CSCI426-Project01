@@ -1,0 +1,115 @@
+/* addPost.css - Jade & White Theme */
+.add-post-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 168, 107, 0.08);
+  border: 1px solid #e0f0ea;
+}
+
+.add-post-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #00a86b, #007a52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.form-input {
+  padding: 12px 15px;
+  border: 2px solid #e0f0ea;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #00a86b;
+  box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-family: inherit;
+}
+
+.form-select {
+  padding: 12px 15px;
+  border: 2px solid #e0f0ea;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #00a86b;
+  box-shadow: 0 0 0 3px rgba(0, 168, 107, 0.1);
+}
+
+.submit-button {
+  padding: 14px;
+  background: linear-gradient(135deg, #00a86b, #007a52);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 168, 107, 0.3);
+  background: linear-gradient(135deg, #007a52, #006442);
+}
+
+.Doctor-only {
+  background: rgba(0, 168, 107, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #00a86b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .add-post-container {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .add-post-title {
+    font-size: 1.8rem;
+  }
+}

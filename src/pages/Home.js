@@ -1,30 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "../style/Home.css";
 function Home() {
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>Welcome to the Online Doctor Platform</h1>
+    <div className="home-container">
+      <div className="hero-section">
+        <h1 className="hero-title">Welcome to MediConnect</h1>
+        <p className="hero-subtitle">
+          Your trusted online healthcare companion.  
+          Connect with doctors, ask questions, and get reliable information — 
+          all in one place.
+        </p>
+        <p className="hero-subtitle">
+          Whether you're here to start a discussion or simply learn more,
+          we’re always here to help.
+        </p>
+        
+        <div className="cta-buttons">
+          <Link to="/register" className="cta-button primary">
+            Get Started
+          </Link>
+          <Link to="/about" className="cta-button secondary">
+            Learn More
+          </Link>
+        </div>
 
-      <p style={{ fontSize: "18px", marginTop: "15px" }}>
-        Connect with medical professionals, ask questions, and participate in
-        health discussions. This platform makes it easy for anyone to seek help
-        and share knowledge.
-      </p>
-
-      <hr style={{ margin: "25px 0" }} />
-
-
-      <div style={{ marginTop: "30px" }}>
-        <Link to="/posts">
-          <button style={{ padding: "10px 20px", marginRight: "10px" }}>
-            View Discussions
-          </button>
-        </Link>
-
-        <Link to="/register">
-          <button style={{ padding: "10px 20px" }}>Create Account</button>
-        </Link>
+        <div className="features">
+          <div className="feature">
+            <div className="feature-icon">👥</div>
+            <h3>Community Support</h3>
+            <p>Connect with Patients and healthcare professionals</p>
+          </div>
+          <div className="feature">
+            <div className="feature-icon">💬</div>
+            <h3>Share Experiences</h3>
+            <p>Discuss health topics and share your journey</p>
+          </div>
+        </div>
       </div>
     </div>
   );

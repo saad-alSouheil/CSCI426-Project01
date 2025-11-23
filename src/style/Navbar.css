@@ -1,50 +1,200 @@
+/* Navbar.css - Jade & White Theme */
+
+/* Top Navbar */
 .top-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e1e1e;
+  background: linear-gradient(135deg, #19ab70 0%, #007a52 100%);
   color: white;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  box-shadow: 0 2px 15px rgba(0, 104, 74, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.top-navbar .links a,
-.top-navbar .links button {
-  margin-left: 15px;
+.top-navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #fff, #e8f5f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.top-navbar .links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-navbar .links a {
   color: white;
   text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-.top-navbar .links button:hover,
 .top-navbar .links a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.top-navbar .links button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.top-navbar .links button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 104, 74, 0.3);
 }
 
 /* Side Navbar */
 .side-navbar {
-  width: 200px;
-  background-color: #f4f4f4;
+  width: 280px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fdfb 100%);
+  color: #2c3e50;
   height: 100vh;
-  padding: 20px;
+  padding: 30px 0;
+  position: sticky;
+  top: 0;
+  box-shadow: 2px 0 15px rgba(0, 168, 107, 0.1);
+  border-right: 1px solid #e0f0ea;
 }
 
 .side-navbar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .side-navbar ul li {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  padding: 0 20px;
 }
 
 .side-navbar ul li a {
+  display: block;
+  color: #2c3e50;
   text-decoration: none;
-  color: #333;
+  padding: 15px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.side-navbar ul li a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(135deg, #00a86b, #007a52);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
 .side-navbar ul li a:hover {
-  font-weight: bold;
+  background: rgba(0, 168, 107, 0.08);
+  transform: translateX(5px);
+  color: #007a52;
+  border-color: #e0f0ea;
 }
 
+.side-navbar ul li a:hover::before {
+  transform: scaleY(1);
+}
+
+.side-navbar ul li a:active {
+  transform: translateX(2px);
+}
+
+/* Doctor-specific links */
+.side-navbar ul li a[href*="Discussions"] {
+  background: linear-gradient(135deg, rgba(0, 168, 107, 0.1), rgba(0, 122, 82, 0.1));
+  border-left: 4px solid #00a86b;
+  color: #007a52;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .side-navbar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-navbar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px 0;
+    background: white;
+  }
+  
+  .side-navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 15px;
+  }
+  
+  .side-navbar ul li {
+    flex: 1;
+    min-width: 120px;
+    margin-bottom: 0;
+  }
+  
+  .side-navbar ul li a {
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 14px;
+    background: #f8fdfb;
+    border: 1px solid #e0f0ea;
+  }
+  
+  .top-navbar {
+    padding: 12px 20px;
+  }
+  
+  .top-navbar .logo {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-navbar ul {
+    flex-direction: column;
+  }
+  
+  .side-navbar ul li {
+    min-width: auto;
+  }
+}
+
+/* Add active state for nav links */
+.side-navbar ul li a.active {
+  background: rgba(0, 168, 107, 0.1);
+  transform: translateX(5px);
+  color: #007a52;
+  border-color: #e0f0ea;
+}
+
+.side-navbar ul li a.active::before {
+  transform: scaleY(1);
+}

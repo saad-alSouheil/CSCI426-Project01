@@ -2,56 +2,61 @@ import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PostCards from "../components/PostCards";
+import "../style/Dashboard.css";
 
 export default function Dashboard({ currentUser, posts }) {
-const navigate = useNavigate();
-useEffect(() => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
     if (!currentUser) {
-      navigate("/"); // redirect to home if logged out
+      navigate("/");
     }
   }, [currentUser, navigate]);
 
-
-  const isDoctor = currentUser.role === "doctor";
+  const isDoctor = currentUser?.role === "Doctor";
 
   const recentQuest = [...posts]
     .reverse()
-    .filter((p) => p.type === "discussion")
+    .filter((p) => p.type === "Discussion")
     .slice(0, 2);
 
   const recentPosts = [...posts]
     .reverse()
-    .filter((p) => p.type === "study")
+    .filter((p) => p.type === "Study")
     .slice(0, 2);
 
-let title = "";
+  let title = "";
 
-if (currentUser.role === "doctor") {
-  title = "Dr.";
-} else {
-  // patient
-  if (currentUser.gender === "male") {
-    title = "Mr.";
-  } else if (currentUser.gender === "female") {
-    title = "Ms.";
+  if (currentUser?.role === "Doctor") {
+    title = "Dr.";
+  } else {
+    if (currentUser?.gender === "male") {
+      title = "Mr.";
+    } else if (currentUser?.gender === "female") {
+      title = "Ms.";
+    }
   }
-}
+
+  if (!currentUser) return null;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Welcome,{" "} {title} {currentUser.username} 👋</h2>
-      
-
-      <hr />
+    <div className="dashboard-container">
+      <div className="welcome-section">
+        <h2 className="welcome-title">
+          Welcome, {title} {currentUser.username}
+        </h2>
+      </div>
 
       {/* Doctor-only section */}
       {isDoctor && (
         <>
-          <h3>Recent Discussions</h3>
+          <h3 className="section-title">Recent Discussions</h3>
           {recentQuest.length === 0 ? (
-            <p>No discussions yet.</p>
+            <div className="empty-state">
+              <p>No Discussions yet.</p>
+            </div>
           ) : (
-            <div style={{ marginTop: "20px" }}>
+            <div className="posts-grid">
               {recentQuest.map((q) => (
                 <PostCards
                   key={q.id}
@@ -62,16 +67,18 @@ if (currentUser.role === "doctor") {
             </div>
           )}
 
-          <hr />
+          <div className="section-divider"></div>
         </>
       )}
 
       {/* Everyone sees this */}
-      <h3>Recent Study Posts</h3>
+      <h3 className="section-title">Recent Study Posts</h3>
       {recentPosts.length === 0 ? (
-        <p>No study posts yet.</p>
+        <div className="empty-state">
+          <p>No Study posts yet.</p>
+        </div>
       ) : (
-        <div style={{ marginTop: "20px" }}>
+        <div className="posts-grid">
           {recentPosts.map((p) => (
             <PostCards
               key={p.id}

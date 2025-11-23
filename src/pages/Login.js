@@ -1,8 +1,9 @@
 import { useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../style/Login.css";
 
-export default function Login({ users, setCurrentUser}) {
+export default function Login({ users, setCurrentUser }) {
   const [selectedUser, setSelectedUser] = useState("");
   const navigate = useNavigate();
 
@@ -16,30 +17,40 @@ export default function Login({ users, setCurrentUser}) {
     }
   };
 
-
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Login</h2>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Welcome Back</h2>
 
-      {/* LOGIN DROPDOWN */}
-      <select
-        value={selectedUser}
-        onChange={(e) => setSelectedUser(e.target.value)}
-      >
-        <option value="">Select a user</option>
-        {users.map((u) => (
-          <option key={u.id} value={u.username}>
-            {u.username} ({u.role})
-          </option>
-        ))}
-      </select>
+        <div className="form-group">
+          <label className="form-label">Select User</label>
+          <select
+            value={selectedUser}
+            onChange={(e) => setSelectedUser(e.target.value)}
+            className="form-select"
+          >
+            <option value="">Choose a user to login...</option>
+            {users.map((u) => (
+              <option key={u.id} value={u.username}>
+                {u.username} ({u.role})
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin} className="login-button">
+          Login
+        </button>
 
-      <hr />
+        <div className="divider"></div>
 
-      <p>Doesn't have an account? Sign up now</p>
-      <Link to="/register"><button>Sign Up</button></Link>
+        <div className="register-section">
+          <p className="register-text">Don't have an account?</p>
+          <Link to="/register" className="register-button">
+            Create Account
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

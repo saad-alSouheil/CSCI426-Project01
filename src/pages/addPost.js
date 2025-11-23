@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../style/AddPost.css";
 
 const AddPost = ({currentUser, addPost }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [type, setType] = useState("study");
-
+  const [type, setType] = useState("Study");
 
   const navigate = useNavigate();
 
-  // If user is NOT logged in -> block access:
- useEffect(() => {
-  if (!currentUser) {
-    navigate("/login");
-    alert("You must be logged in!");
-  }
-}, [currentUser, navigate]);
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+      alert("You must be logged in!");
+    }
+  }, [currentUser, navigate]);
 
-if (!currentUser) return null; 
+  if (!currentUser) return null; 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Automatically set type for patients
-    const postType =
-      currentUser.role === "doctor" ? type : "discussion";
-
+    const postType = currentUser.role === "Doctor" ? type : "Discussion";
 
     const newPost = {
-      id: Date.now(), // unique ID
+      id: Date.now(),
       title,
       type: postType,
       content,
@@ -40,50 +36,55 @@ if (!currentUser) return null;
     };
 
     addPost(newPost);
-      navigate("/posts");
+    navigate("/posts");
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Create a New Post</h2>
+    <div className="add-post-container">
+      <h2 className="add-post-title">Create a New Post</h2>
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: "500px" }}>
-        <label>Title</label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          style={{ width: "100%", padding: "8px", marginBottom: "15px" }}
-        />
+      <form onSubmit={handleSubmit} className="post-form">
+        <div className="form-group">
+          <label className="form-label">Title</label>
+          <input
+            type="text"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="form-input"
+            placeholder="Enter post title..."
+          />
+        </div>
 
-        <label>Content</label>
-        <textarea
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          style={{ width: "100%", height: "150px", padding: "8px" }}
-        />
+        <div className="form-group">
+          <label className="form-label">Content</label>
+          <textarea
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="form-input form-textarea"
+            placeholder="Write your post content here..."
+          />
+        </div>
 
-   {currentUser.role === "doctor" && (
-          <>
-            <label>Type</label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              style={{ width: "100%", padding: "8px", marginBottom: "15px" }}
-            >
-              <option value="study">Study</option>
-              <option value="topic">Topic</option>
-            </select>
-          </>
+        {currentUser.role === "Doctor" && (
+          <div className="Doctor-only">
+            <div className="form-group">
+              <label className="form-label">Post Type</label>
+              <select
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                className="form-select"
+              >
+                <option value="Study">Study</option>
+                <option value="topic">Topic</option>
+              </select>
+            </div>
+          </div>
         )}
 
-        <button
-          type="submit"
-          style={{ marginTop: "20px", padding: "10px 20px" }}
-        >
-          Post Post
+        <button type="submit" className="submit-button">
+         Post
         </button>
       </form>
     </div>

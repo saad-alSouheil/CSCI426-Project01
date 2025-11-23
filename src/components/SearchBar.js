@@ -1,14 +1,17 @@
 import React from "react";
+import "../style/SearchBar.css";
 
-const SearchBar = ({ value, onChange, placeholder = "Search..." }) => {
+const SearchBar = ({ value, onChange, placeholder = "Search posts..." }) => {
   return (
-    <input
-      type="text"
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      style={{ padding: "8px", width: "250px", marginBottom: "20px" }}
-    />
+    <div className="search-container">
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        className="search-input"
+      />
+    </div>
   );
 };
 
