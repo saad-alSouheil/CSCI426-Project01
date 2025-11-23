@@ -1,54 +1,69 @@
-// src/pages/Discussions.jsx
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const initialPosts = [
-  { id: 1, author: "doctor1", role: "doctor", content: "Hello, I can help." },
-  { id: 2, author: "patient1", role: "patient", content: "I have a question." },
-];
+const DiscussionsPage = ({discussions}) => {
+  const [search, setSearch] = useState("");
 
-export default function Discussions({ currentUser }) {
-  const [posts, setPosts] = useState(initialPosts);
-  const [text, setText] = useState("");
-
-  const handlePost = () => {
-    const newPost = {
-      id: Date.now(),
-      author: currentUser.username,
-      role: currentUser.role,
-      content: text,
-    };
-    setPosts([newPost, ...posts]);
-    setText("");
-  };
+  // Filter based on search term
+  const filteredDiscussions = discussions.filter((d) =>
+    d.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div>
-      <h2>Discussions</h2>
+    <div style={{ padding: "20px" }}>
+      <h2>All Discussions</h2>
 
-      <textarea
-        placeholder="Write a post..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+      {/* Search */}
+      <input
+        type="text"
+        placeholder="Search discussions..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ padding: "8px", width: "250px", marginBottom: "20px" }}
       />
-      <button onClick={handlePost}>Post</button>
 
-      <hr />
+      
+        <Link to="/create-discussion">
+          <button style={{ marginLeft: "20px", padding: "8px 15px" }}>
+            + New Discussion
+          </button>
+        </Link>
+      
 
-      {posts.map((p) => (
-        <div key={p.id} style={{ borderBottom: "1px solid #ccc", padding: 10 }}>
-          <strong>{p.author}</strong> 
-          <span style={{
-            background: p.role === "doctor" ? "lightblue" : "lightgreen",
-            padding: "2px 6px",
-            marginLeft: 6,
-            borderRadius: 4,
-            fontSize: "0.8em"
-          }}>
-            {p.role}
-          </span>
-          <p>{p.content}</p>
-        </div>
-      ))}
+      {/* If no discussions */}
+      {filteredDiscussions.length === 0 && <p>No discussions found.</p>}
+
+      {/* List discussions */}
+      <div style={{ marginTop: "20px" }}>
+        {filteredDiscussions.map((disc) => (
+          <div
+            key={disc.id}
+            style={{
+              border: "1px solid #ccc",
+              padding: "15px",
+              borderRadius: "5px",
+              marginBottom: "15px",
+            }}
+          >
+            <h3>{disc.title}</h3>
+
+            <p>
+              <strong>By:</strong> {disc.author} ({disc.role})
+            </p>
+            <p>
+              <strong>Date:</strong> {disc.date}
+            </p>
+
+            <p>{disc.content.slice(0, 100)}...</p>
+
+            <Link to={`/discussion/${disc.id}`}>
+              <button style={{ marginTop: "10px" }}>View</button>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default DiscussionsPage;

@@ -3,16 +3,6 @@ font-family: Arial, sans-serif;
 margin: 0; 
 padding: 0; 
 } 
-.container { 
-padding: 20px; 
-} 
-form input, form textarea { 
-display: block; 
-margin: 10px 0; 
-padding: 8px; 
-width: 100%; 
-max-width: 400px; 
-} 
 
 .footer{
   background-color: #333;
@@ -23,5 +13,13 @@ max-width: 400px;
   bottom: 0;
   width: 100%;
   font-size: 14px;
-    
+}
+
+.app-layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
 }
