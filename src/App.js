@@ -111,8 +111,18 @@ const handleAddComment = (postId, text) => {
       <Route path="/about" element={<About />} />
       {currentUser && (
           <>
-            <Route path="/profile" element={<Profile user={currentUser} currentUser={currentUser} posts={allPosts} setCurrentUser={setCurrentUser} setUsers={setUsers} />} />
-          </>
+<Route 
+  path="/profile" 
+  element={
+    <Profile 
+      user={currentUser} 
+      currentUser={currentUser} 
+      posts={allPosts} 
+      setCurrentUser={setCurrentUser}
+      setUsers={setUsers}
+    /> 
+  } 
+/>          </>
         )
       }
       </Routes>

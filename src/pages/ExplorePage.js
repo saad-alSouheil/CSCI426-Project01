@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import PostCards from "../components/PostCards";
 
@@ -21,15 +20,7 @@ const PostsPage = ({posts, currentUser}) => {
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search posts..."
       />
-
       
-        <Link to="/create-post">
-          <button style={{ marginLeft: "20px", padding: "8px 15px" }}>
-            + New Post
-          </button>
-        </Link>
-      
-
       <div style={{ marginTop: "20px" }}>
         {filteredPosts.length === 0 && <p>No posts found.</p>}
         {filteredPosts.map((d) => (

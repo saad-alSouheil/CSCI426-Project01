@@ -5,10 +5,11 @@ import "../style/Navbar.css";
 export default function Navbar({ currentUser, setCurrentUser }) {
   const navigate = useNavigate();
   
-  const handleLogout = () => {
-    setCurrentUser(null);
-    navigate("/");
-  }
+ const handleLogout = () => {
+  navigate('/');
+  // Use setTimeout or defer state update
+  setTimeout(() => setCurrentUser(null), 5);
+};
   
   return (
     <nav className="top-navbar">
