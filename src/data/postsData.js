@@ -3,7 +3,7 @@ export const postsData = [
     id: 1,
     title: "New Guidelines for Diabetes Patients",
     content: "A summary of the new 2025 study regarding diabetic nutrition...",
-    author: "Dr. Sarah Haddad",
+    author: "doctor1",
     role: "doctor",
     date: "2025-01-10",
     type: "study",
