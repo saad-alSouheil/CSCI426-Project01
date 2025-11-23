@@ -49,7 +49,7 @@ const handleAddComment = (postId, text) => {
 
 
   return (
-    <Router>
+    <Router basename="/CSCI426-Project01">
       <TopNavbar currentUser={currentUser} setCurrentUser={setCurrentUser} posts={allPosts}/>
       <div className="app-layout">
         <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} posts={allPosts} />
