@@ -1,7 +1,7 @@
 
 {
-  "homepage": "https://saad-alSouheil.github.io/CSCI426-Project01.git",
-  "name": "react-navbar-tutorial",
+"homepage": "https://saad-alSouheil.github.io/CSCI426-Project01",
+  "name": "medical-posts-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
