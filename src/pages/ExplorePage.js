@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import SearchBar from "../components/SearchBar";
-import PostCards from "../components/PostCards";
+
+import SearchBar from "../components/SearchBar"; //use search bar component
+import PostCards from "../components/PostCards"; // use postCards component for displaying post cards
+
 import "../style/ExplorePage.css";  
 
+/**
+ * ExplorePage Page
+ * 
+ * Props:
+ *  - posts: Array of all posts available.
+ *  - currentUser: The currently logged-in user object.
+ * Functionality:
+ * - Displays a list of all posts.
+ * - Includes a search bar to filter posts by title.
+ */
+
 const ExplorePage = ({ posts, currentUser }) => {
+  // State for search input
   const [search, setSearch] = useState("");
 
   // Filter based on search term only
@@ -16,6 +30,7 @@ const ExplorePage = ({ posts, currentUser }) => {
       <div className="header-search-row">
       <h2 className="page-header">Explore</h2>
       <div className="search-section">
+        
         <SearchBar
           value={search}
           onChange={(e) => setSearch(e.target.value)}

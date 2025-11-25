@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "../style/AddPost.css";
 
+/**
+ * AddPost Page for creating a new post.
+ * 
+ * props:
+ * - currentUser: The currently logged-in user object.
+ * - addPost: Function to add a new post to the list of posts.
+ */
+
 const AddPost = ({currentUser, addPost }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [type, setType] = useState("Study");
+  // State variables for form inputs
+  const [title, setTitle] = useState(""); // Title of the post
+  const [content, setContent] = useState(""); // Content of the post
+  const [type, setType] = useState("Study"); // Type of the post (Study or topic)
 
   const navigate = useNavigate();
 
+  // Redirect to login if user tries to create a post and is not logged in
   useEffect(() => {
     if (!currentUser) {
       navigate("/login");
@@ -16,11 +27,12 @@ const AddPost = ({currentUser, addPost }) => {
     }
   }, [currentUser, navigate]);
 
-  if (!currentUser) return null; 
+  if (!currentUser) return null;
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
+    // Set post type based on user role (Patients can only create Discussion posts)
     const postType = currentUser.role === "Doctor" ? type : "Discussion";
 
     const newPost = {

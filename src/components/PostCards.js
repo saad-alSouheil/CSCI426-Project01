@@ -2,7 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../style/PostCards.css";
 
-const PostCards = ({ post, currentUser }) => {
+/**
+ * displays a summary card for a post.
+ * 
+ * Props:
+ *  - post: post object containing details like title, author, role, type, date, likes, and content
+ * 
+ * Functionality:
+ *  - It shows the title, author, role, type of post, date, likes, and a preview of the content.
+ *  - navigate to the full post page
+ */
+
+const PostCards = ({post}) => {
   return (
     <div className="post-card" data-type={post.type}>
       <h3 className="post-title">{post?.title}</h3>
@@ -31,10 +42,10 @@ const PostCards = ({ post, currentUser }) => {
         
       </div>
       
-      <p className="post-content">{post.content.slice(0, 200)}...</p>
+      <p className="post-content">{post.content.slice(0, 200)}...</p> {/* Preview of content */}
 
       <div className="post-actions">
-        <Link to={`/post/${post.id}`}>
+        <Link to={`/post/${post.id}`}> {/* Link to full post */}
           <button className="view-button">Read More</button>
         </Link>
       </div>

@@ -1,38 +1,56 @@
-import React from "react";
-import { useState } from "react";
+/**
+ * This component provides a form for new users to create an account.
+ * When submitted, it adds the new user to the list of existing users and navigates to the login page.
+ * 
+ * Props:
+ * - users: array of existing user objects
+ * - setUsers: function to update the users array
+ */
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Register.css";
+
 export default function Register({ users, setUsers }) {
-  const [newUsername, setNewUsername] = useState("");
-  const [newRole, setNewRole] = useState("Patient");
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("male");
-  const navigate = useNavigate();
+
+  //state variables for form inputs
+  const [newUsername, setNewUsername] = useState(""); 
+  const [newRole, setNewRole] = useState("Patient"); 
+  const [password, setPassword] = useState("");       
+  const [gender, setGender] = useState("male");     
+
+  const navigate = useNavigate(); // used to redirect to another page
+
 
   const handleRegister = () => {
-    if (!newUsername.trim()) {
+    if (!newUsername.trim()) {   // checks for empty username
       alert("Username is required.");
       return;
     }
 
-    const exists = users.some((u) => u.username === newUsername);
+    const exists = users.some((u) => u.username === newUsername); // check duplicate username
     if (exists) {
       alert("Username already exists!");
       return;
     }
 
+    // Create new user object
     const newUser = {
-      id: Date.now(),
+      id: Date.now(),  
       username: newUsername,
       role: newRole,
       password: password,
       gender: gender,
-      bio: "",
+      bio: "",          
     };
 
+    // Add the new user to the users state
     setUsers((prev) => [...prev, newUser]);
-    alert("Account created! You can now log in.");
-    navigate("/login");
+
+    alert("Account created! You can now log in."); 
+    navigate("/login");         // redirect to login page
+
+    // Reset form fields
     setNewUsername("");
     setPassword("");
   };
@@ -42,6 +60,7 @@ export default function Register({ users, setUsers }) {
       <div className="register-card">
         <h2 className="register-title">Create Account</h2>
 
+        {/* Username */}
         <div className="form-group">
           <label className="form-label">Username</label>
           <input
@@ -53,6 +72,7 @@ export default function Register({ users, setUsers }) {
           />
         </div>
 
+        {/* Password */}
         <div className="form-group">
           <label className="form-label">Password</label>
           <input
@@ -64,6 +84,7 @@ export default function Register({ users, setUsers }) {
           />
         </div>
 
+        {/* Gender */}
         <div className="form-group">
           <label className="form-label">Gender</label>
           <div className="radio-group">
@@ -90,6 +111,7 @@ export default function Register({ users, setUsers }) {
           </div>
         </div>
 
+        {/* Role */}
         <div className="form-group">
           <label className="form-label">Role</label>
           <select

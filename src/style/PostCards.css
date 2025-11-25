@@ -114,11 +114,11 @@
 
 /* Study type specific styling */
 .post-card[data-type="Study"] {
-  border-left: 4px solid #00a86b;
+  border-left: 4px solid #03ebe7;
 }
 
 .post-card[data-type="Discussion"] {
-  border-left: 4px solid #3498db;
+  border-left: 4px solid #35c464;
 }
 
 /* Responsive */

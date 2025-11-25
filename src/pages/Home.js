@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "../style/Home.css";
+
+/**
+ * Home Page
+ * 
+ * Functionality:
+ * - Serves as the landing page for the application. 
+ */
+
 function Home() {
   return (
     <div className="home-container">

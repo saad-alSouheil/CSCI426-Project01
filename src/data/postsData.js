@@ -1,3 +1,8 @@
+/**
+ * exports an array of post objects
+ * Each post contains: title, content, author, date, type, likes, and comments.
+ **/
+
 export const postsData = [
   {
     id: 1,

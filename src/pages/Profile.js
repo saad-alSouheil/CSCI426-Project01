@@ -1,25 +1,49 @@
 import React from 'react';
 import { useState } from 'react'; 
-import PostCards from "../components/PostCards";
+
+import PostCards from "../components/PostCards"; // use PostCards component for displaying posts
+
 import pfp from "../assets/pfp.jpg";
 import "../style/Profile.css";
 
+/**
+ * Profile Component
+ * 
+ * Props:
+ *  - user: The user whose profile is being displayed.
+ *  - currentUser: The currently logged-in user.
+ *  - posts: Array of all posts.
+ *  - setCurrentUser: Function to update the current user.
+ *  - setUsers: Function to update the list of users.
+ * 
+ * Functionality:
+ * - Displays user information (username, role, gender, bio).
+ * - Allows the user to edit their bio.
+ * - Shows the list of posts posted by the user.
+ */
+
 export default function Profile({ user, currentUser, posts, setCurrentUser, setUsers }) {
+  
+  // Filter posts to only include those authored by the user
   const filteredPosts = posts.filter(p => 
     p?.author === currentUser?.username || 
     p?.author === currentUser?.name
   );
 
+  // State for editing bio
   const [isEditing, setIsEditing] = useState(false);
+  // State for the edited bio content
   const [editedBio, setEditedBio] = useState(user.bio || "");
 
+  // Handle bio update action
   const handleBioUpdate = () => {
     const updatedUser = {
       ...user,
       bio: editedBio
     };
 
-    setCurrentUser(updatedUser);
+    setCurrentUser(updatedUser); // Update current user with new bio
+    // Update users list with the updated user
     setUsers(prevUsers => 
       prevUsers.map(u => u.id === user.id ? updatedUser : u)
     );
@@ -33,6 +57,7 @@ export default function Profile({ user, currentUser, posts, setCurrentUser, setU
         
          <div className="profile-picture-section">
           <div className="profile-picture-container">
+            {/**Sets same default pfp for all users (users can't update pfp in this app) */}
             <div className="profile-picture">
               <img 
                 src={pfp} 

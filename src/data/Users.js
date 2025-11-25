@@ -1,3 +1,8 @@
+/**
+ * exports an array of user objects
+ * Each user contains: id, username, name, role, bio, and gender
+ */
+
 export const preloadedUsers = [
    { 
     id: 1, 

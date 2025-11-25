@@ -1,12 +1,19 @@
+/**
+ * Props:
+ * - post: The post object
+ * - onLike: Function from parent that updates the like count
+ */
+
 import React, { useState } from "react";
 import "../style/Like&Cmt.css";
 
 const LikeButton = ({ post, onLike }) => {
+  // Tracks if the current user has liked the post
   const [liked, setLiked] = useState(false);
 
   const handleClick = () => {
-    setLiked(!liked);
-    onLike(post.id, !liked ? 1 : -1);
+    setLiked(!liked); //change like state
+    onLike(post.id, !liked ? 1 : -1); //update like count in parent
   };
 
   return (

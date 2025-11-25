@@ -2,10 +2,25 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../style/Navbar.css";
 
+/**
+ * This sidebar navigation is shown on every page.
+ * It displays different links depending on whether a user is logged in,
+ * and whether the user is a doctor or a patient.
+ *
+ * Props:
+ *  - currentUser: The currently logged-in user object (null if no user logged in)
+ *
+ * Functionality:
+ *  - If no user is logged in show "Home", if a user is logged in show "Dashboard" instead
+ *  - Only doctors can see the "Discussions" page
+ *  - All users can see "Explore", "Create Post", "Profile", and "About" pages
+ *  - "Profile" link is only shown when a user is logged in
+ */
+
 function Navbar({ currentUser }) {
   const location = useLocation();
 
-  // Helper function to check if a link is active
+  //function to check if a link is active (for styling purposes!)
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -13,6 +28,8 @@ function Navbar({ currentUser }) {
   return (
     <aside className="side-navbar">
       <ul>
+
+        {/* Show Dashboard when logged in, Home when logged out */}
         <li>
           {currentUser ? (
             <Link 

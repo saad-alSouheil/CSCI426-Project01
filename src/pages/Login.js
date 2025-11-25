@@ -1,18 +1,31 @@
 import { useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import "../style/Login.css";
 
+/**
+ * Login Page
+ * Props:
+ *  - users: Array of all registered users.
+ *  - setCurrentUser: Function to set the currently logged-in user.
+ * Functionality:
+ * - Allows users to select and log in as an existing user.
+ */
+
 export default function Login({ users, setCurrentUser }) {
+  // State for selected user
   const [selectedUser, setSelectedUser] = useState("");
+  
   const navigate = useNavigate();
 
+  // Handle login action
   const handleLogin = () => {
-    const found = users.find((u) => u.username === selectedUser);
-    if (found) {
+    const found = users.find((u) => u.username === selectedUser); // Find user by username
+    if (found) { // If user is found, set as current user and navigate to dashboard
       setCurrentUser(found);
       navigate("/dashboard");
-    } else {
+    } else { // If no user is selected, show alert
       alert("Please select a user.");
     }
   };
